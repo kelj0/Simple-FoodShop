@@ -6,3 +6,4 @@
 * Boot up server ( `python server.py` )
 * You can login with `admin:admin`-admin account or `test:test`-guest
 
+**This is still work in progress!**
