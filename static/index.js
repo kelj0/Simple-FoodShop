@@ -54,8 +54,6 @@ window.app = new Vue({
             var i = document.getElementById("landingVid")
             var s = document.getElementById("navbar")
             this.sticky = i.clientHeight-48;
-            console.log(i.clientHeight)
-            console.log(this.sticky)
             if(window.pageYOffset < this.sticky){
                 s.setAttribute('style',`top: ${this.sticky}px`);
             }else{

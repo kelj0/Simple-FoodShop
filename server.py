@@ -131,12 +131,18 @@ def alterFood():
         t = Food.query.filter_by(name=resp['name']).first()
         alterFood = int(resp['number'])
         if resp['what']=="add":
-            t.amount+=alterFood
-            print("Added 1 to {0} ({1})".format(t.name,t.amount))
-            error = jsonify({
-                'status': 200,
-                'message': str("{0} pieces left of {1}".format(t.amount,t.name))
-            })
+            if t.amount<=200:
+                t.amount+=alterFood
+                print("Added 1 to {0} ({1})".format(t.name,t.amount))
+                error = jsonify({
+                    'status': 200,
+                    'message': str("{0} pieces left of {1}".format(t.amount,t.name))
+                })
+            else:
+                error = jsonify({
+                    'status': 200,
+                    'message': str("You reached maximum amount of {0} you can store".format(t.name))
+                })
         elif resp['what']=='remove':
             if t.amount==0:
                 error = jsonify({
