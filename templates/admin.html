@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web shop</title>
+  <meta charset="UTF-8"> 
+  <!--VUE-->
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  
+  <!--BOOTSTRAP-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+  <!--LOCAL STYLE-->
+  <link rel="stylesheet" href="../static/admin.css">
+
+  
+</head>
+<body>
+  <!-------POPOUT MODAL FOR USER REGISTRAION------->
+  <script type="text/x-template" id="modal-template">
+    <transition name="modal">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <div class="modal-header">
+              <slot name="header">
+                default header
+              </slot>
+            </div>
+            <div class="modal-body">
+              <slot name="body">
+                default body
+              </slot>
+            </div>
+            <div class="modal-footer">
+              <slot name="footer">
+                default footer
+                <button class="modal-default-button" @click="$emit('close')">
+                  OK
+                </button>
+              </slot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </script>
+  <!------------------------>
+    
+  <div id="app">
+    <h4>
+      <a href="{{ url_for('home')}}">Go Home</a>
+    </h4>
+    <h1>Users</h1>
+    <ul>
+      <li v-for="(data,index) in users" :key='index'>
+          <div id="userRowBox">
+            <div id="userBoxWrapper">
+              <div v-if="data.admin=='False'" id="userBox">
+                <p id="userNameBox">Username: [[data.username]]</p>
+                <p id="emailBox">Email: [[data.email]]</p>
+                <p id="passwordBox">Hashed password: [[data.password]]</p>
+              </div>
+              <div v-else id="adminBox">
+                  <p id="userNameBox">Username: [[data.username]]</p>
+                  <p id="emailBox">Email: [[data.email]]</p>
+                  <p id="passwordBox">Hashed password: [[data.password]]</p>
+              </div>
+              <div v-if="data.username != 'admin'" id="removeUserbtn">
+                <button type="button" class="btn btn-warning" v-on:click="removeUser(data)">
+                  Remove user
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+    </ul>
+    <div id="addNewUserbtn">
+      <button class="btn btn-primary" id="show-modal" @click="showModal = true">Register new user</button>
+      <!-- use the modal component, pass in the prop -->
+      <modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">Please fill in a  ll areas</h3>
+        <div slot="body">
+          <form action="{{ url_for('registration') }}" method="POST">
+            <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+            Admin<input type="checkbox" name="admin" value="True">
+            <input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+            <input type="password" placeholder="Repeat password" name="rpassword" value="{{ request.form.rpassword }}">
+            <input type="email" placeholder="Email" name="email" value="{{ request.form.email }}">          
+            <input class="btn btn-success" type="submit" onclick="logout()" value="Register">
+          </form>
+        </div>
+        <div slot="footer">
+          <button class="btn btn-warning" @click="showModal = false">
+            Cancel
+          </button>
+        </div>
+      </modal>
+    </div>
+    <h1>Food</h1>
+    <li v-for="(arr,subclass) in food" :key='subclass'>
+      <p id="foodSubclass">[[subclass]]</p>
+        <ul>
+          <li v-for="(data,index) in arr" :key='index'>
+            <div id="foodRowBox">
+              <div id="foodBox">
+                <p id="foodName">[[data.name]]</p>
+                <p id="foodPrice">[[data.price]]kn</p>
+                <p v-if="data.amount==0">Out of stock!</p>
+                <p v-else id="foodAmount">In storage: [[data.amount]]</p>
+              </div>
+              <div id="foodButtons">
+                <button type="button" class="btn btn-warning" v-on:click="removeFood(data)">
+                  -[[ RmorAddquant ]]
+                </button>
+                <button type="button" class="btn btn-success" v-on:click="addFood(data)">
+                  [[ RmorAddquant ]]
+                </button>
+              </div> 
+            </div>
+          </li>
+        </ul>
+      </li>
+  </div>
+
+  <!--STATIC LOCAL SCRIPTS-->
+  <script src="../static/admin.js"></script>
+</body>
+</html>

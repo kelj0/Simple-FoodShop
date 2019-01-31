@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>WebShop</title>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+
+      <!-- Required includes for bootstrap+vue -->
+      <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+      <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+      <script src="https://unpkg.com/vue"></script>
+      <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+      <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+      <!--Regular bootstrap-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      
+      <!--ICONS-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+      <!--LOCAL STYLE-->
+      <link rel="stylesheet" href="../static/index.css">
+  </head>
+  <body>
+    <div id="app">
+        <div class="topnav" id="navbar">
+            <a href="" class="active">Order</a>
+            <a href="#">Home</a>
+            <a href="#">MOBILE APP</a>
+            <a href="#">OUR CITIES</a> 
+            <a href="#">SUBSCRIPTIONS</a> 
+            <a href="#">CONTACT US</a> 
+            {% if session['logged_in'] %}
+              <a href="{{ url_for('logout') }}">Log out</a> 
+              {% if session['admin'] %}
+                <a href="{{ url_for('admin') }}">Admin pannel</a>
+              {% endif %}
+            {% else %}}
+              <a href="{{ url_for('login') }}">Log in</a>
+            {% endif %}
+            <a href="javascript:void(0);" class="icon" v-on:click="expandNav()">
+              <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <section id="vidsec">
+            <div class="viddiv">
+                  <img id="landingVid" src="/stream_data/cat.gif">
+                <div class="overlay">
+                    <h1><i class="fab fa-angellist fa-10x"></i></h1>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------------------------------------------------->
+      <h1 class="headings" id="delivery">DAILY OFFER TOP 4 MEALS - DELIVERY</h1>
+      <!-------------------------Daily offers grid------------------------------->
+      <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+              <div class="panel panel-default">
+                <h3><i class="fas fa-pizza-slice fa-5x"></i></h3>
+                <h3>PIZZA</h3>
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+                Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
+                dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
+                Aliquam in felis sit amet augue.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-default">
+                <h3><i class="fas fa-bread-slice fa-5x"></i></h3>
+                <h3>BREAD</h3>
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+                Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
+                dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
+                Aliquam in felis sit amet augue.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-default">
+                <h3><i class="fas fa-drumstick-bite fa-5x"></i></h3>
+                <h3>MEAT</h3>
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+                Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
+                dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
+                Aliquam in felis sit amet augue.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="panel panel-default">
+                <h3><i class="fas fa-fish fa-5x"></i></h3>
+                <h3>FISH</h3>
+                <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. 
+                Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis 
+                dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. 
+                Aliquam in felis sit amet augue.
+                </div>
+              </div>
+            </div>
+        </div>
+        <!---------GALLERY BOXES---------->
+        <!---------GLAVNA---------->
+        <h1 class="headings" id="glavnaJela">Glavna jela</h1>
+        <div class="imageGalleries">
+          <div class="imageCenter">
+            <img class="image" v-for="(image, i) in glavnaimgs" :src="image" @click="gindex = i">
+            <vue-gallery-slideshow 
+            :images="glavnaimgs" 
+            :index="gindex"
+            @close="gindex = null"
+            ></vue-gallery-slideshow>
+          </div>
+          <!---------DESERTI---------->
+          <h1 class="headings" id="deserti">Deserti</h1>
+          <div class="imageCenter">
+            <img class="image" v-for="(image, i) in desertiimgs" :src="image" @click="dindex = i">
+            <vue-gallery-slideshow 
+              :images="desertiimgs" 
+              :index="dindex"
+              @close="dindex = null"
+            ></vue-gallery-slideshow>
+          </div>
+          <!---------PEKARSKI---------->
+          <h1 class="headings" id="pekarskiProizvodi">Pekarski proizvodi</h1>
+          <div class="imageCenter">
+            <img class="image" v-for="(image, i) in pekarskiimgs" :src="image" @click="pindex = i">
+            <vue-gallery-slideshow 
+              :images="pekarskiimgs" 
+              :index="pindex"
+              @close="pindex = null"
+            ></vue-gallery-slideshow>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!------------------------------------------------------------------------->       
+    <!--STATIC LOCAL SCRIPT-->
+    <script src="https://unpkg.com/vue-gallery-slideshow@1.3.0/dist/js/vue-gallery-slideshow.min.js"></script>
+    <script src="../static/index.js"></script>
+  </body>
+</html>
