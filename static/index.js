@@ -90,21 +90,54 @@ window.app = new Vue({
             axios
               .get('/food')
               .then(response => {this.food = response.data})
+        },
+        respIcoForm(){
+            if(window.innerWidth < 786){
+                document.getElementById("icon").className="fab fa-angellist fa-3x";
+                document.getElementsByName("sicons").forEach(element=>{
+                    var el = element.classList[2];
+                    element.classList.remove(el)
+                    element.classList.add("fa-2x");
+                })
+                console.log("Smaller than 786");
+            }
+            else if(window.innerWidth < 1200){
+                document.getElementById("icon").className="fab fa-angellist fa-8x";
+                document.getElementsByName("sicons").forEach(element=>{
+                    var el = element.classList[2];
+                    element.classList.remove(el)
+                    element.classList.add("fa-3x");
+                })
+                console.log("Smaller than 1200");
+            }else{
+                document.getElementById("icon").className="fab fa-angellist fa-10x";
+                document.getElementsByName("sicons").forEach(element=>{
+                    var el = element.classList[2];
+                    element.classList.remove(el)
+                    element.classList.add("fa-5x");
+                })
+                console.log("Bigger than 1200");
+            }
         }
     },
     created() {
         window.addEventListener('scroll', this.stickNav),
         window.addEventListener('scroll', this.ajdustNav),
-        window.addEventListener('resize', this.ajdustNav),
+        window.addEventListener("mousemove", this.ajdustNav),
+        window.addEventListener('resize', this.respIcoForm),
         this.sticky = document.getElementById("landingVid").clientHeight-48,
         document.getElementById("navbar").setAttribute('style',`top: ${this.sticky}px`),
         this.updateFood(),
         this.ajdustNav()
     },
     mounted(){
-        this.ajdustNav()
+        this.ajdustNav(),
+        this.respIcoForm()
     },
     destroyed(){
-        window.removeEventListener('scroll',this.stickNav)
+        window.removeEventListener('scroll', this.stickNav),
+        window.removeEventListener('scroll', this.ajdustNav),
+        window.removeEventListener("mousemove", this.ajdustNav),
+        window.removeEventListener('resize', this.respIcoForm)
     }
 })

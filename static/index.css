@@ -186,7 +186,7 @@ li{
 .modal-body {
   margin: 20px 0;
   overflow-y: scroll;
-  height: 500px;
+  height: 300px;
 }
 
 .modal-default-button {
@@ -247,7 +247,12 @@ li{
 * Media querys *
 ***************/
 @media screen and (max-width: 900px) {
-  .topnav a:not(:first-child) {display: none;}
+  .topnav{
+    font-size: 13px;
+  }
+  .topnav a:not(:first-child) {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -262,4 +267,44 @@ li{
     display: block;
     text-align: left;
   }
+  #foodRowBox{
+    width: 90%;
+    padding: 3px;
+  }
+  .modal-body ul{
+    padding-left: 20px !important;
+  }
+  #foodBox{
+    width: 70%;
+    float: left;
+  }
+  .modal-container {
+    width: 70%;
+    padding: 10px 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav{
+    font-size: 12px !important;
+  }
+  body{
+    font-size: 11px;
+  }
+  #foodRowBox{
+    width: 100%;
+    padding: 2px;
+  }
+  #foodBox{
+    width: 80%;
+    float: left;
+  }
+  .modal-body ul{
+    padding-left: 20px !important;
+  }
+  .modal-container {
+    width: 80%;
+    padding: 7px 12px;
+  }
+  
 }
