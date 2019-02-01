@@ -124,6 +124,7 @@ window.app = new Vue({
         window.addEventListener('scroll', this.stickNav),
         window.addEventListener('scroll', this.ajdustNav),
         window.addEventListener("mousemove", this.ajdustNav),
+        window.addEventListener("resize", this.ajdustNav),
         window.addEventListener('resize', this.respIcoForm),
         this.sticky = document.getElementById("landingVid").clientHeight-48,
         document.getElementById("navbar").setAttribute('style',`top: ${this.sticky}px`),
@@ -138,6 +139,7 @@ window.app = new Vue({
         window.removeEventListener('scroll', this.stickNav),
         window.removeEventListener('scroll', this.ajdustNav),
         window.removeEventListener("mousemove", this.ajdustNav),
+        window.removeEventListener("resize", this.ajdustNav),
         window.removeEventListener('resize', this.respIcoForm)
     }
 })
