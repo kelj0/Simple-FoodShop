@@ -1,3 +1,7 @@
+Vue.component('modal',{
+    template: '#modal-template'
+  })
+
 window.app = new Vue({
     el: '#app',
     components: {
@@ -25,7 +29,9 @@ window.app = new Vue({
         'img/pekarski_proizvodi/krafna.jpg',
         'img/pekarski_proizvodi/slanac.jpg'
         ],
-        sticky: null
+        sticky: null,
+        showModal: false,
+        food: null
       },
     delimiters: ['[[',']]'],
     methods: {
@@ -69,6 +75,21 @@ window.app = new Vue({
             form.action = "http://www.fulek.com/VUA/SUPIT/ContactUs";
             form.method = 'POST';
             form.submit();
+        },
+        removeFood(data) {
+            axios
+              .post('/alterFood',{'name':data.name,'subclass':data.subclass,'what':'remove','number':1})
+              .then(
+                response => (
+                    console.log(`[${response.data['status']}] -> : ${response.data['message']}`),
+                    this.updateFood()
+                    )
+                  )
+        },
+        updateFood(){
+            axios
+              .get('/food')
+              .then(response => {this.food = response.data})
         }
     },
     created() {
@@ -76,7 +97,12 @@ window.app = new Vue({
         window.addEventListener('scroll', this.ajdustNav),
         window.addEventListener('resize', this.ajdustNav),
         this.sticky = document.getElementById("landingVid").clientHeight-48,
-        document.getElementById("navbar").setAttribute('style',`top: ${this.sticky}px`)
+        document.getElementById("navbar").setAttribute('style',`top: ${this.sticky}px`),
+        this.updateFood(),
+        this.ajdustNav()
+    },
+    mounted(){
+        this.ajdustNav()
     },
     destroyed(){
         window.removeEventListener('scroll',this.stickNav)

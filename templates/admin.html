@@ -80,7 +80,7 @@
       <button class="btn btn-primary" id="show-modal" @click="showModal = true">Register new user</button>
       <!-- use the modal component, pass in the prop -->
       <modal v-if="showModal" @close="showModal = false">
-        <h3 slot="header">Please fill in a  ll areas</h3>
+        <h3 slot="header">Please fill in all areas</h3>
         <div slot="body">
           <form action="{{ url_for('registration') }}" method="POST">
             <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">

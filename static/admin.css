@@ -62,8 +62,6 @@ ul{
     float:right;
 }
 
-
-
 /******************
     MODAL PROMPT
 ******************/
@@ -79,7 +77,7 @@ ul{
     transition: opacity .3s ease;
   }
   
-  .modal-wrapper {
+.modal-wrapper {
     display: table-cell;
     vertical-align: middle;
   }
