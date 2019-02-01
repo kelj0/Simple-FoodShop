@@ -124,6 +124,23 @@ h3{
   display: none;
 }
 
+
+/***************
+*   Form div   *
+***************/
+#formDiv{
+  margin: 0 auto ;
+  text-align: center;
+  max-width: 50%;
+  background-color: #f1d5ce;
+}
+.form-group{
+  max-width: 50%;
+  margin: 0 auto;
+  
+}
+
+
 /***************
 * Media querys *
 ***************/

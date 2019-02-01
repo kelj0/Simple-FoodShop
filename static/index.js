@@ -60,6 +60,15 @@ window.app = new Vue({
                 s.setAttribute('style',`top: 0px`);
 
             }
+        },
+        handleSubmit(){
+            if(document.getElementById("testName").checked) {
+                document.getElementById('testNameHidden').disabled = true;
+            };
+            let form = document.getElementById("fform");
+            form.action = "http://www.fulek.com/VUA/SUPIT/ContactUs";
+            form.method = 'POST';
+            form.submit();
         }
     },
     created() {

@@ -139,28 +139,28 @@
       </div>
       <!------FORM AREA------>
       <div id="formDiv">
-        <form method="post" action="http://www.fulek.com/VUA/SUPIT/ContactUs" role="form">
+        <form id="fform" @submit.prevent="handleSubmit">
           <div class="form-group">
             <label for="name">Name:</label>
             <input type="name" class="form-control" id="name" required>
           </div>
           <div class="form-group">
-            <label for="Email">Email:</label>
+            <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" required>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" name="newsletter" value="true" required>Recieve newsletter?</label> <!--add js to send unchecked-->
+            <label><input type="checkbox" id='testName' type='checkbox' value='true' name='newsletter'>Recieve newsletter?</label>
+            <input id='testNameHidden' type='hidden' value='false' name='newsletter'>
           </div>
           <div class="form-group">
               <select name="importance" required="required">
-                <option>Importance</option>
                 <option value="3">High</option>
                 <option value="2">Medium</option>
                 <option value="1">Low</option>
               </select>
           </div>
           <div class="form-group">
-            <label class="label">Message</label>
+            <label for="message">Message</label>
             <textarea class="textarea" name="message" placeholder="Your Message?" rows="3" required></textarea>
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
