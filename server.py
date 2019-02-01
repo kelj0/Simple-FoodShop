@@ -11,7 +11,7 @@ from helperFunctions import test_db,check_password_hash,generate_password_hash,b
 app = Flask(__name__)
 app.config['DATABASE_FILE'] = 'users.sqlite'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite'
-app.secret_key = os.urandom(12)
+app.secret_key = "SESSION_RANDOM_KEY_CHANGE_THIS_IN_PRODUCTION"
 
 
 db = SQLAlchemy(app)
