@@ -1,6 +1,17 @@
+*{
+  margin: 0 auto;
+  padding: 0;
+}
+#app{
+  background-color: #f6e0e0;
+}
+
 body {
   font-family: sans-serif;
-  background-color: #f6e0e0;
+  overflow-x: hidden;
+  background: url("/img/vojkoB.png") repeat;
+  margin:0 auto;
+  
 }
 
 .headings{
@@ -131,6 +142,19 @@ li{
 .topnav .icon {
   display: none;
 }
+
+
+/****************
+* SUBSCRIPTIONS *
+*****************/
+#subRow{
+  background: rgba(175, 76, 76, 0);
+  padding: 0 10%;
+  margin-right: 0px;
+  width:100%;
+  margin: 0 auto;
+}
+
 
 
 /***************
@@ -282,6 +306,19 @@ li{
     width: 70%;
     padding: 10px 15px;
   }
+  .image {
+    width: 150px;
+    height: 150px;
+  }
+  .image:hover{
+    border: 10px groove rgb(155, 8, 8);
+  }
+  .headings{
+    font-size: 28px;
+  }
+  .headings::after{
+    border: 1px solid #da3a3a;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -306,5 +343,21 @@ li{
     width: 80%;
     padding: 7px 12px;
   }
-  
+  .image {
+    width: 100px;
+    height: 100px;
+  }
+  .image:hover{
+    border: 5px groove rgb(155, 8, 8);
+  }
+  .headings{
+    font-size: 22px;
+  }
+  .headings::after{
+    border:1px solid #da3a3a;
+  }
+  #msgBox{
+    margin-left: -20px;
+    width: 90%;
+  }
 }

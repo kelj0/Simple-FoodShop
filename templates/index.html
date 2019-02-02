@@ -57,13 +57,14 @@
     <!------------------------>
       
     <div id="app">
+        <div id="getHome"></div>
         <div class="topnav" id="navbar">
             <a id="show-modal" @click="showModal = true" class="active">Order</a>
-            <a href="#">Home</a>
-            <a href="#">MOBILE APP</a>
-            <a href="#">OUR CITIES</a> 
-            <a href="#">SUBSCRIPTIONS</a> 
-            <a href="#">CONTACT US</a> 
+            <a href="#getHome">Home</a>
+            <a href="#dailyOffer">DAILY OFFER</a>
+            <a href="#glavnaJela">GALLERY</a> 
+            <a href="#subscriptionDiv">SUBSCRIPTIONS</a> 
+            <a href="#formDiv">CONTACT US</a> 
             {% if session['logged_in'] %}
               <a href="{{ url_for('logout') }}">Log out</a> 
               {% if session['admin'] %}
@@ -120,7 +121,7 @@
         <!------------------------------------------------------------------------->
       <h1 class="headings" id="delivery">DAILY OFFER TOP 4 MEALS - DELIVERY</h1>
       <!-------------------------Daily offers grid------------------------------->
-      <div class="container">
+      <div id="dailyOffer">
         <hr>
         <div class="row">
             <div class="col-md-3">
@@ -202,6 +203,49 @@
           </div>
         </div>
       </div>
+
+
+      <!-----SUBSCRIPTIONS----->
+      <h1 id="subscriptionDiv" class="headings">SUBSCRIPTIONS</h1> 
+        <div id="subRow" class="row">
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <p>img here</p>
+                <div class="panel-body">
+                  <ul>
+                    <li>Test</li>
+                    <li>test</li>
+                    <li>test</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <p>img here</p>
+                <div class="panel-body">
+                  <ul>
+                    <li>Test</li>
+                    <li>test</li>
+                    <li>test</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <p>img here</p>
+                <div class="panel-body">
+                  <ul>
+                    <li>Test</li>
+                    <li>test</li>
+                    <li>test</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </div>
+
       <!------FORM AREA------>
       <div id="formDiv">
         <form id="fform" @submit.prevent="handleSubmit">
@@ -226,7 +270,7 @@
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea class="textarea" name="message" placeholder="Your Message?" rows="3" required></textarea>
+            <textarea id="msgBox" class="textarea" name="message" placeholder="Your Message?" rows="3" required></textarea>
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
         </form> 
@@ -236,7 +280,7 @@
       <!-------FOOTER------->
       <footer class="footer">
           <div style="text-align: center;margin-top: 50px;background-color: burlywood">
-            <p>
+            <p style="margin-bottom:0;">
               <strong>Supit Food Shop project </strong> by Karlo Kegljevic, 2019</a>.
             </p>
           </div>
