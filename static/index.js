@@ -1,6 +1,7 @@
 Vue.component('modal',{
     template: '#modal-template'
   })
+Vue.use(VueScrollTo)
 
 window.app = new Vue({
     el: '#app',

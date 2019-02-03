@@ -9,7 +9,7 @@
 body {
   font-family: sans-serif;
   overflow-x: hidden;
-  background: url("/img/vojkoB.png") repeat;
+  background: url("/img/vojkoV.png") repeat;
   margin:0 auto;
   
 }
@@ -154,8 +154,28 @@ li{
   width:100%;
   margin: 0 auto;
 }
-
-
+.subDiv{
+  background-color: #c6dbf3;
+  border: 1px dotted #da3a3a;
+}
+.subDiv li{
+  text-align: center;
+}
+.subDiv li:nth-child(-n+3){
+  background-color: #e7c6c0;
+  margin-top:5px; 
+  width: 50%;
+  border-radius: 20px;
+}
+.subDiv button{
+  margin-top: 10px;
+}
+.subDiv:hover{
+  transition-duration: 100ms;
+  background-color: #97c1f0;
+  border-radius: 10px;
+  border: 1px solid #da3a3a;
+}
 
 /***************
 *   Form div   *
