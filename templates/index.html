@@ -78,13 +78,21 @@
             <a href="#" v-scroll-to="{
                 el: '#subscriptionDiv',
                 duration: 1000,
-                offset: -50}">SUBSCRIPTIONS</a> 
+                offset: -50}">SUBSCRIPTIONS</a>
+            <a href="#" v-scroll-to="{
+              el: '#mobile-app',
+              duration: 1000,
+              offset: -50}">MOBILE APP</a>
+            <a href="#" v-scroll-to="{
+              el: '#reviews',
+              duration: 1000,
+              offset: -50}">REVIEWS</a>
             <a href="#" v-scroll-to="{
                 el: '#formDiv',
                 duration: 1000,
                 offset: -50}">CONTACT US</a> 
             {% if session['logged_in'] %}
-              <a href="{{ url_for('logout') }}">Log out</a> 
+              <a href="{{ url_for('logout') }}">LOG OUT</a> 
               {% if session['admin'] %}
                 <a href="{{ url_for('admin') }}">Admin pannel</a>
               {% endif %}
@@ -276,8 +284,78 @@
             </div>
         </div>
 
+        <!------MOBILE APP------->
+        <h1 id="mobile-app" class="headings">Mobile app</h1>
+        <div class="mobileapp">
+          <div class="row">
+            <div class="col-md-5">
+              <img id="mobileIMG" width="100%" height="80%" src="img/mobile.png">
+            </div>
+            <div class="col-md-5">
+              <div class="side-pannel">
+                <ul>
+                  <li>Free</li>
+                  <li>No adds</li>
+                  <li>IOS/Android</li>
+                </ul>
+                <div id="downloadButtons">
+                  <img id="andrIMG" width="50%" height="50%" src="img/android.png">
+                  <img id="iphoneIMG" width="50%" height="50%" src="img/iphone.png">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!------REVIEWS------->
+        <h1 id="reviews" class="headings">Reviews</h1> 
+        <div class="reviews">
+          <div id="subRow" class="row">
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <img width="100%" height="100%" src="img/thompson.jpg">
+                  <h5>Ante antic</h5>
+                  <div class="panel-body">
+                    <ul>
+                      <li>Very</li>
+                      <li>nice</li>
+                      <li>awsome</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <img width="100%" height="100%" src="img/richie.jpg">
+                  <h5>Ivo ivic</h5>
+                  <div class="panel-body">
+                    <ul>
+                      <li>its really good</li>
+                      <li>awsome</li>
+                      <li>yes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <img width="100%" height="100%" src="img/snowden.jpg">
+                  <h5>Pero peric</h5>
+                  <div class="panel-body">
+                    <ul>
+                      <li>Its </li>
+                      <li>Very</li>
+                      <li>Nice</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
       <!------FORM AREA------>
       <div id="formDiv">
+        <h1 id="contactus" class="headings">Contact us</h1> 
         <form id="fform" @submit.prevent="handleSubmit">
           <div class="form-group">
             <label for="name">Name:</label>
