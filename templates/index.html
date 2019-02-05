@@ -62,35 +62,13 @@
         <div id="getHome"></div>
         <div class="topnav" id="navbar">
             <a id="show-modal" @click="showModal = true" class="active">Order</a>
-            <a href="#" v-scroll-to="{
-                  el: '#getHome',
-                  duration: 500,
-                  offset: 0
-                }">Home</a>
-            <a href="#" v-scroll-to="{
-                el: '#dailyOffer',
-                duration: 1000,
-                offset: -120}">DAILY OFFER</a>
-            <a href="#" v-scroll-to="{
-                el: '#glavnaJela',
-                duration: 1000,
-                offset: -50}">GALLERY</a> 
-            <a href="#" v-scroll-to="{
-                el: '#subscriptionDiv',
-                duration: 1000,
-                offset: -50}">SUBSCRIPTIONS</a>
-            <a href="#" v-scroll-to="{
-              el: '#mobile-app',
-              duration: 1000,
-              offset: -50}">MOBILE APP</a>
-            <a href="#" v-scroll-to="{
-              el: '#reviews',
-              duration: 1000,
-              offset: -50}">REVIEWS</a>
-            <a href="#" v-scroll-to="{
-                el: '#formDiv',
-                duration: 1000,
-                offset: -50}">CONTACT US</a> 
+            <a href="#" v-scroll-to="{el: '#getHome',duration: 500,offset: 0}">Home</a>
+            <a href="#" v-scroll-to="{el: '#dailyOffer',duration: 1000,offset: -120}">DAILY OFFER</a>
+            <a href="#" v-scroll-to="{el: '#glavnaJela',duration: 1000,offset: -50}">GALLERY</a> 
+            <a href="#" v-scroll-to="{el: '#subscriptionDiv',duration: 1000,offset: -50}">SUBSCRIPTIONS</a>
+            <a href="#" v-scroll-to="{el: '#mobile-app',duration: 1000,offset: -50}">MOBILE APP</a>
+            <a href="#" v-scroll-to="{el: '#reviews',duration: 1000,offset: -50}">REVIEWS</a>
+            <a href="#" v-scroll-to="{el: '#formDiv',duration: 1000,offset: -50}">CONTACT US</a> 
             {% if session['logged_in'] %}
               <a href="{{ url_for('logout') }}">LOG OUT</a> 
               {% if session['admin'] %}
