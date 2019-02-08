@@ -23,6 +23,7 @@
       
       <!--ICONS-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+      <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
       <!--LOCAL STYLE-->
       <link rel="stylesheet" href="../static/index.css">
   </head>
@@ -59,6 +60,8 @@
     <!------------------------>
       
     <div id="app">
+        <!-- Return to Top -->
+        <a href="#" id="return-to-top" v-scroll-to="{el: '#getHome',duration: 500,offset: 0}"><i class="icon-chevron-up"></i></a>
         <div id="getHome"></div>
         <div class="topnav" id="navbar">
             <a id="show-modal" @click="showModal = true" class="active">Order</a>
