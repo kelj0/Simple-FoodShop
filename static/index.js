@@ -53,8 +53,12 @@ window.app = new Vue({
             var navbar = document.getElementById("navbar");
             if (window.pageYOffset >= this.sticky) {
                 navbar.classList.add("sticky")
+                document.getElementById("return-to-top").style.visibility= "visible";
+                document.getElementById("return-to-top").style.opacity = 1;
             } else {
                 navbar.classList.remove("sticky");
+                document.getElementById("return-to-top").style.display= "hidden";
+                document.getElementById("return-to-top").style.opacity = 0;
             }
         },
         ajdustNav(){

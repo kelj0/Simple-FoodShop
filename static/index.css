@@ -517,3 +517,9 @@ li{
     width: 90%;
   }
 }
+
+@media screen and (max-height: 480px) {
+  #navbar a{
+    font-size: 10px;
+ } 
+}
