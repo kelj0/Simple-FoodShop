@@ -109,8 +109,11 @@
                             <p v-else id="foodAmount">In storage: [[data.amount]]</p>
                           </div>
                           <div id="foodButtons">
-                            <button type="button" class="btn btn-warning" v-on:click="removeFood(data)">
-                              Buy
+                            <button type="button" class="btn btn-warning" v-on:click="baskedHandler(data,'a')">
+                              Add
+                            </button>
+                            <button type="button" class="btn btn-warning" v-on:click="baskedHandler(data,'r')">
+                              Remove
                             </button>
                           </div> 
                         </div>

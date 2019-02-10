@@ -81,6 +81,9 @@ window.app = new Vue({
             form.method = 'POST';
             form.submit();
         },
+        baskedHandler(data,what){
+            console.log("TODO")
+        },
         removeFood(data) {
             axios
               .post('/alterFood',{'name':data.name,'subclass':data.subclass,'what':'remove','number':1})
