@@ -445,10 +445,6 @@ li{
     display: block;
     text-align: left;
   }
-  #foodRowBox{
-    width: 90%;
-    padding: 3px;
-  }
   .modal-body ul{
     padding-left: 20px !important;
   }
@@ -542,6 +538,11 @@ li{
     margin-left: -20px;
     width: 90%;
   }
+  #cardItems{
+    margin-right: 10%;
+    padding: 10px;
+  }
+  
 }
 
 @media screen and (max-height: 480px) {
