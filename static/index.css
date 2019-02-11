@@ -403,7 +403,7 @@ li{
   color: #fff;
   margin: 0;
   position: relative;
-  left: 16px;
+  left: 19px;
   top: 13px;
   font-size: 19px;
   -webkit-transition: all 0.3s ease;
@@ -542,7 +542,6 @@ li{
     margin-right: 10%;
     padding: 10px;
   }
-  
 }
 
 @media screen and (max-height: 480px) {
