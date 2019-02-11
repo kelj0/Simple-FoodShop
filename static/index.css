@@ -359,6 +359,21 @@ li{
 #card{
   float: right;
 }
+#cardItems{
+  margin-right: 30%;
+  background-color: #97c1f0;
+  border-radius: 10px;
+  padding: 20px;
+}
+#cardItem{
+  border: 3px dotted rgb(241, 126, 108);
+  padding: 4px;
+}
+#itemsTotal{
+  padding: 2px;
+  border: 3px solid black;
+}
+
 
 /***************
 * Back to top  *

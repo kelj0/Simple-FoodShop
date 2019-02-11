@@ -113,13 +113,16 @@ window.app = new Vue({
                 }
             }else{
                 this.cardBox.forEach(element => {
-                        this.removeFood(element,element.amount)
+                        this.removeFood(element,element.amount);
                 })
-                this.basketPrice = 0
-                this.cardBox = []
+                this.resetBasket();
             }
             //https://stackoverflow.com/a/28515376/9564839
             this.basketPrice = Math.round(this.basketPrice*100)/100
+        },
+        resetBasket(){
+            this.basketPrice = 0
+            this.cardBox = []
         },
         removeFood(data,amountToRemove=1) {
             axios
