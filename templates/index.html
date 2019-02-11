@@ -97,33 +97,51 @@
           <modal v-if="showModal" @close="showModal = false">
             <h3 slot="header">Order your food</h3>
             <div slot="body">
-                <li v-for="(arr,subclass) in food" :key='subclass'>
-                  <p id="foodSubclass">[[subclass]]</p>
-                    <ul>
-                      <li v-for="(data,index) in arr" :key='index'>
-                        <div id="foodRowBox">
-                          <div id="foodBox">
-                            <p id="foodName">[[data.name]]</p>
-                            <p id="foodPrice">[[data.price]]kn</p>
-                            <p v-if="data.amount==0">Out of stock!</p>
-                            <p v-else id="foodAmount">In storage: [[data.amount]]</p>
-                          </div>
-                          <div id="foodButtons">
-                            <button type="button" class="btn btn-warning" v-on:click="baskedHandler(data,'a')">
-                              Add
-                            </button>
-                            <button type="button" class="btn btn-warning" v-on:click="baskedHandler(data,'r')">
-                              Remove
-                            </button>
-                          </div> 
+              <div id="card">
+                <p>Your order</p>
+                <div v-if="cardBox.length==0">
+                  <p>Please add something to card</p>
+                </div>
+                <div v-else id="cardItems">
+                    <li v-for="(data,index) in cardBox" :key="index">
+                      <p>[[ data.name ]]</p>
+                      <p>[[ data.price ]]</p>
+                      <p>[[ data.amount ]]</p>
+                      <p>[[ data.amount*data.price ]]</p>
+                    </li>
+                    <p>Price: [[ basketPrice ]]</p>
+                </div>
+              </div>
+              <li v-for="(arr,subclass) in food" :key='subclass'>
+                <p id="foodSubclass">[[subclass]]</p>
+                  <ul>
+                    <li v-for="(data,index) in arr" :key='index'>
+                      <div id="foodRowBox">
+                        <div id="foodBox">
+                          <p id="foodName">[[data.name]]</p>
+                          <p id="foodPrice">[[data.price]]kn</p>
+                          <p v-if="data.amount==0">Out of stock!</p>
+                          <p v-else id="foodAmount">In storage: [[data.amount]]</p>
                         </div>
-                      </li>
-                    </ul>
-                </li>
+                        <div id="foodButtons">
+                        <button type="button" class="btn btn-warning" v-on:click="baskedHandler(data,'add')">
+                            Add
+                        </button>
+                        <button type="button" class="btn btn-warning" v-on:click="baskedHandler(data,'remove')">
+                            Remove
+                        </button>
+                      </div> 
+                    </div>
+                  </li>
+                </ul>
+              </li>
             </div>
             <div slot="footer">
-              <button class="btn btn-warning" @click="showModal = false">
-                Done
+              <button class="btn btn-danger" @click="showModal = false">
+                Cancel
+              </button>
+              <button v-if="cardBox.length>0" type="button" class="btn btn-success" v-on:click="baskedHandler(data,'order')">
+                Order
               </button>
             </div>
           </modal>

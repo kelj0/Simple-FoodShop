@@ -122,55 +122,6 @@ def deleteUser():
 def admin():
     return render_template('admin.html')
     
-@app.route('/alterFood',methods=['GET','POST'])
-@admin_required
-def alterFood():
-    error = None
-    if frequest.method == 'POST':
-        resp = ast.literal_eval(frequest.data.decode('utf-8'))
-        t = Food.query.filter_by(name=resp['name']).first()
-        alterFood = int(resp['number'])
-        if resp['what']=="add":
-            if t.amount<=200:
-                t.amount+=alterFood
-                print("Added 1 to {0} ({1})".format(t.name,t.amount))
-                error = jsonify({
-                    'status': 200,
-                    'message': str("{0} pieces left of {1}".format(t.amount,t.name))
-                })
-            else:
-                error = jsonify({
-                    'status': 200,
-                    'message': str("You reached maximum amount of {0} you can store".format(t.name))
-                })
-        elif resp['what']=='remove':
-            if t.amount==0:
-                error = jsonify({
-                    'status': 400,
-                    'message': str("You have 0 pieces of {0}".format(t.name))
-                })
-            else:
-                if int(t.amount) < alterFood:
-                    return jsonify({
-                        'status': 400,
-                        'message': str("You cant remove {0} from {1} cause there is only {2} left".format(alterFood,t.name,t.amount))
-                        })
-                t.amount-=alterFood
-                print("Removed 1 from {0} ({1})".format(t.name,t.amount))
-                error = jsonify({
-                    'status': 200,
-                    'message': str("{0} pieces left of {1}".format(t.amount,t.name))
-                })
-        db.session.commit()
-        backup_db(User,Food)
-        print("Backup complete!")
-    else:
-        error = jsonify({
-                'status': 405,
-                'message': 'POST request required'
-        })
-    return error
-
 @app.route('/registration',methods=['GET','POST'])
 def registration():
     error = None
@@ -261,6 +212,55 @@ def logout():
 
 
 # =========API=========
+@app.route('/alterFood',methods=['GET','POST'])
+@admin_required
+def alterFood():
+    error = None
+    if frequest.method == 'POST':
+        resp = ast.literal_eval(frequest.data.decode('utf-8'))
+        t = Food.query.filter_by(name=resp['name']).first()
+        alterFood = int(resp['number'])
+        if resp['what']=="add":
+            if t.amount<=200:
+                t.amount+=alterFood
+                print("Added 1 to {0} ({1})".format(t.name,t.amount))
+                error = jsonify({
+                    'status': 200,
+                    'message': str("{0} pieces left of {1}".format(t.amount,t.name))
+                })
+            else:
+                error = jsonify({
+                    'status': 200,
+                    'message': str("You reached maximum amount of {0} you can store".format(t.name))
+                })
+        elif resp['what']=='remove':
+            if t.amount==0:
+                error = jsonify({
+                    'status': 400,
+                    'message': str("You have 0 pieces of {0}".format(t.name))
+                })
+            else:
+                if int(t.amount) < alterFood:
+                    return jsonify({
+                        'status': 400,
+                        'message': str("You cant remove {0} from {1} cause there is only {2} left".format(alterFood,t.name,t.amount))
+                        })
+                t.amount-=alterFood
+                print("Removed {0} from {1} ({2})".format(alterFood,t.name,t.amount))
+                error = jsonify({
+                    'status': 200,
+                    'message': str("{0} pieces left of {1}".format(t.amount,t.name))
+                })
+        db.session.commit()
+        backup_db(User,Food)
+        print("Backup complete!")
+    else:
+        error = jsonify({
+                'status': 405,
+                'message': 'POST request required'
+        })
+    return error
+
 @app.route('/users')
 def usersAPI():
     l = []

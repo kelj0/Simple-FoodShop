@@ -32,7 +32,9 @@ window.app = new Vue({
         ],
         sticky: null,
         showModal: false,
-        food: null
+        food: null,
+        cardBox: [],
+        basketPrice: 0
       },
     delimiters: ['[[',']]'],
     methods: {
@@ -47,7 +49,6 @@ window.app = new Vue({
             else {
               x.className = "topnav";
             }
-
         },
         stickNav(){
             var navbar = document.getElementById("navbar");
@@ -82,11 +83,47 @@ window.app = new Vue({
             form.submit();
         },
         baskedHandler(data,what){
-            console.log("TODO")
+            if(what=='add'){
+                console.log(`Add ${data.name} to basked`)
+                var found=false;
+                for (let i = 0; i < this.cardBox.length; i++) {
+                    if(this.cardBox[i].name==data.name){
+                        this.cardBox[i].amount+=1
+                        found=true;
+                        this.basketPrice += data.price;
+                        break;
+                    }                    
+                }
+                if(!found){
+                    this.cardBox.push({'name':data.name,'price':data.price,'amount':1});
+                    this.basketPrice += data.price;
+                }
+            }else if(what=='remove'){
+                for (let i = 0; i < this.cardBox.length; i++) {
+                    if(this.cardBox[i].name==data.name){
+                        if(this.cardBox[i].amount==1){
+                            this.basketPrice -= (data.price)
+                            this.cardBox.splice(i,1)
+                        }else{
+                            this.cardBox[i].amount-=1
+                            this.basketPrice -= (data.price)
+                        }
+                        break;
+                    }
+                }
+            }else{
+                this.cardBox.forEach(element => {
+                        this.removeFood(element,element.amount)
+                })
+                this.basketPrice = 0
+                this.cardBox = []
+            }
+            //https://stackoverflow.com/a/28515376/9564839
+            this.basketPrice = Math.round(this.basketPrice*100)/100
         },
-        removeFood(data) {
+        removeFood(data,amountToRemove=1) {
             axios
-              .post('/alterFood',{'name':data.name,'subclass':data.subclass,'what':'remove','number':1})
+              .post('/alterFood',{'name':data.name,'subclass':data.subclass,'what':'remove','number':amountToRemove})
               .then(
                 response => (
                     console.log(`[${response.data['status']}] -> : ${response.data['message']}`),
